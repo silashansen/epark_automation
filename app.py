@@ -33,9 +33,12 @@ def handler(event, context):
     )
     log("Filling out plate details")
     elem = driver.find_element(By.ID, "LicensePlate")
+    log("Found plate field, sending keys")
     elem.send_keys(platenumber)
 
-    elem = driver.find_element(By.CSS_SELECTOR, "#mail > input[type='text']")
+    log("Filling out email")
+    elem = driver.find_element(By.CSS_SELECTOR, ".form-group__item > input[type='text']")
+    log("Found email input, sending keys")
     elem.send_keys(email)
 
     #inp = input('All done. Press enter to exit!')
