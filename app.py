@@ -72,6 +72,7 @@ def signin(driver, username, password):
     elem.click()
 
 def initializeWebDriver():
+    
     options = webdriver.ChromeOptions()
     options.binary_location = '/opt/chrome/chrome'
     options.add_argument('--headless')
@@ -86,8 +87,9 @@ def initializeWebDriver():
     options.add_argument(f"--data-path={mkdtemp()}")
     options.add_argument(f"--disk-cache-dir={mkdtemp()}")
     options.add_argument("--remote-debugging-port=9222")
-    driver = webdriver.Chrome("/opt/chromedriver",
-                              options=options)
+    
+    service = webdriver.ChromeService("/opt/chromedriver")
+    driver = webdriver.Chrome(options=options, service=service)
     driver.implicitly_wait(30)
     driver.start_client
     return driver
